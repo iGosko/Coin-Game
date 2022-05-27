@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Coin Game By Gosko</title> <!-- title of game window -->
+</head>
+
+<body>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.js">
+	</script>
+	<script src="js/game.js">
+	</script>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+	/* global Phaser */
+// game variables at the beginning so more than one function can access them.
+
+// Variables that change how the game reacts
+
+//This is a label to show what level we are on.
+var elem2 = document.createElement('label');   
+document.getElementsByTagName('body')[0].appendChild(elem2);
+
+//These are variables that change player movement
+var running = true;
+var ironFeet = false;
+var gravity = 200;
+var velocity_x = 100;
+var velocity_y = 300;
+
+// Variables for game objects
+var player;
+var coins;
+var platforms;
+var enemies;
+
+// Set the starting level
+var currentLevel = 1;
+
+// Names of Noises in the game
+var splatNoise;
+var winNoise;
+
+// Begin the game at a certain size. This can be increased for bigger levels.
+var game = new Phaser.Game(550, 400, Phaser.AUTO, "", "", false, false);
+
+// The following javascript object called playState contains all the active code for this simple game.
+
+var playState = {};
+
+playState.preload = function () {
+  
+    // This code makes it so we go full screen!  
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+
+    // Here we load all the images
+    game.load.crossOrigin = "anonymous";
+  
+    game.load.image("player", "sprites/0player.png");
+    
+  
+    game.load.image("platform", "sprites/0wall.png");
+    game.load.image("coin", "sprites/0coin.png");
+    game.load.image("enemy", "sprites/0hazard.png");
+  
+    // Here we preload the audio assets
+    game.load.audio("win", "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1171931/win.wav");
+    game.load.audio("splat", "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1171931/splat.wav");
+
+};
+
+playState.create = function () {
+    // Here we create the game, starting with the background colour
+    game.stage.backgroundColor = "#5699ab";
+
+    // These two lines add physics to the game world
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.world.enableBody = true;
+
+     //create groups for the platforms, coins and enemies - what ever happens to the group happens to all the members of the group
+
+    platforms = game.add.group();
+    coins = game.add.group();
+    enemies = game.add.group();
+
+    // Set the starting position for the player
+    player = game.add.sprite(20, 100, "player");
+    
+
+    //add gravity to the player so that it falls down
+    player.body.gravity.y = gravity;
+
+    // don't let the player leave the screen area
+    player.body.collideWorldBounds = true;
+
+    // add audio files!
+    splatNoise = game.add.audio("splat");
+    winNoise = game.add.audio("win");
+
+    // Design the level. x = platform, o = coin, h = hazard.
+    var level1 = [
+        "                 ",
+        "                 ",
+        "    o            ",
+        "  h              ",
+        "  xxxxx          ",
+        "                 ",
+        "                 ",
+        "                o",
+        "             xxxx",
+        "                 ",
+        "    o   h    h   ",
+        "xxxxxxxxxxxxxxxxx"
+    ];  
+  
+    var level2 = [
+        "                o",
+        "                 ",
+        "                 ",
+        "                 ",
+        "         o       ",
+        "        xxxxx    ",
+        "                 ",
+        "     o          ",
+        "   xxxx          ",
+        "                 ",
+        "    o        h   ",
+        "xxxxxxxxxxxxxxxxx"
+    ];
+
+    var level3 = [
+        "                 ",
+        "                 ",
+        "    h            ",
+        "    h            ",
+        "    h            ",
+        "    h            ",
+        "    h            ",
+        "    h           o",
+        "    h     xxxxxxx",
+        "    h            ",
+        "    h            ",
+        "xxxxxxxxxxxxxxxxx"
+    ];
+    
+    var level4 = [
+        "                 ",
+        "                o",
+        "                 ",
+        "      o h    xxxx",
+        "      xxx        ",
+        "    o            ",
+        "                 ",
+        "  xxxx          o",
+        "     o    xxxx   ",
+        "                 ",
+        "    o   h    h   ",
+        "xxxxxxxxxxxxxxxxx"
+    ];
+
+    var level5 = [
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "     o           ",
+        "xxxxxxxxxxxxxxxxx"
+    ];
+    
+     var level6 = [
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "                 ",
+        "       o         ",
+        "                 ",
+        "xxxxxxxxxxxxxxxxx"
+    ];
+
+    // find out what the level is and send that to the LoadLevel function
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW************** 
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+************MAKE YOUR CHANGES BELOW**************
+*/
+//Level chooser!
+//The label at the top of the screen will change to represent what level the player is on!
+
+var choiceLevel = prompt("Please enter your level:");
+  if (choiceLevel == null || choiceLevel == 1) {
+    	currentLevel = 1;
+			elem2.innerHTML = "You are now on level " + currentLevel 
+			
+			
+    } else if (choiceLevel == 2) {
+    	currentLevel = 2;
+			elem2.innerHTML = "You are now on level " + currentLevel;
+    } else if (choiceLevel == 3) {
+    	currentLevel = 3;
+			elem2.innerHTML = "You are now on level " + currentLevel;
+    }
+    	else if (choiceLevel == 4) {
+    	currentLevel = 4;
+			elem2.innerHTML = "You are now on level " + currentLevel;
+    } else if (choiceLevel == 5) {
+    	currentLevel = 5;
+			elem2.innerHTML = "You are now on level " + currentLevel;
+    } else if (choiceLevel == 6) {
+    	currentLevel = 6;
+			elem2.innerHTML = "You are now on level " + currentLevel;
+    }
+
+    
+ //see what level the user has chosen and load it! Jump level is set specific to each level!  
+if (!currentLevel || currentLevel === 1) {
+      loadLevel(level1);
+      velocity_y = 700;
+			running = false;
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    } else if (currentLevel === 2) {      
+      loadLevel(level2);
+      velocity_y = 200;
+			running = false;
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    } else if (currentLevel === 3) {
+      loadLevel(level3);
+      velocity_y = 300;
+			running = false;
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    } else if (currentLevel === 4) {
+      loadLevel(level4);
+			running = false;
+      ironFeet = true;
+      velocity_y = 700;
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    } else if (currentLevel === 5) {
+      loadLevel(level5);
+      velocity_y = 100;
+			running = true; //??????
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    } else if (currentLevel === 6) {
+      loadLevel(level6);
+      velocity_y = 100;
+			running = false;
+			alert("Your jump level is " + velocity_y + "! Make sure this is correct!")
+      
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+************MAKE YOUR CHANGES ABOVE**************
+*/
+
+
+
+
+
+
+
+playState.update = function () {
+    // Here we update the game 60 times per second - all code here is run all the time
+
+
+    // Make the player and the platforms collide, so player can't move through them
+    game.physics.arcade.collide(player, platforms);
+
+    // Call the 'takeCoin' function when the player takes a coin
+    game.physics.arcade.overlap(player, coins, takeCoin, null, this);
+
+    // Call the 'lose' function when the player touches the enemy
+    game.physics.arcade.overlap(player, enemies, hitHazard, null, this);
+
+    // add the controls!
+    if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT) === true && running == false) {
+        player.body.velocity.x = -velocity_x;
+    } 
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) === true) {
+        player.body.velocity.x = velocity_x;
+    }
+
+		else if(running === true) {
+			player.body.velocity.x = 200;
+		}
+
+		else if(ironFeet === true) {
+			player.body.velocity.y = 200000
+		}
+    else {
+        player.body.velocity.x = 0;
+    }
+  
+    // Make the player jump only if they are standing on something
+    if (game.input.keyboard.isDown(Phaser.Keyboard.UP) === true && player.body.touching.down === true) {
+        player.body.velocity.y = -velocity_y;
+    }
+    
+    //if the player has collected all the coins move them on to the next level
+    if (coins.total === 0) {
+			alert("You have completed the level!")
+        nextLevel();
+    }
+
+};
+
+
+
+// Function to make the coin disappear if player touches it
+var takeCoin = function (player, coin) {
+    coin.kill();
+    winNoise.play();
+};
+
+// Function called when a player touches a hazard / enemy
+var hitHazard = function (player, enemy) {
+    player.kill();
+    splatNoise.play();
+		alert("Be more careful next time!");
+    restart();
+};
+
+// Function to restart the game from the beginning
+var restart = function () {
+    currentLevel = 1; //set the currentLevel to 1 so it goes back to the menu
+    game.state.start("play", true, false, currentLevel);
+};
+
+// Function to move player on to the next level
+var nextLevel = function () {
+    winNoise.play();
+    currentLevel = currentLevel + 1;
+    game.state.start("play", true, false, currentLevel);
+};
+
+// Create the level from the level data grid in create
+function loadLevel (level) {
+    for (var i = 0; i < level.length; i = i + 1) {
+        for (var j = 0; j < level[i].length; j = j + 1) {
+            if (level[i][j] === "x") { 
+                // Create a wall and add it to the 'platform' group
+                var platform = game.add.sprite(0 + 30 * j, 0 + 30 * i, "platform");
+                platform.body.immovable = true;
+                platforms.add(platform);
+              
+            } else if (level[i][j] === "o") { 
+                // Create a coin and add it to the 'coins' group
+                var coin = game.add.sprite(0 + 30 * j, 0 + 30 * i, "coin");
+                coins.add(coin);
+              
+            } else if (level[i][j] === "h") { 
+                // Create a enemy and add it to the 'enemies' group
+                var enemy = game.add.sprite(0 + 30 * j, 0 + 30 * i, "enemy");
+                enemies.add(enemy);
+              
+            }
+        }
+    }
+}
+
+//Add and start our play state
+game.state.add("play", playState);
+game.state.start("play");
+
+</script>
